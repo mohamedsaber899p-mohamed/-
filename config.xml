@@ -6,6 +6,7 @@
     <access origin="*" />
     
     <platform name="android">
+        <resource-file src="icon.png" target="app/src/main/res/drawable/icon.png" />
         <icon src="icon.png" />
     </platform>
 </widget>
