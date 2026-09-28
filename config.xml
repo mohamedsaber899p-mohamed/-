@@ -4,4 +4,7 @@
     <description>تطبيق القرآن الكريم وتدبر معانيه</description>
     <content src="index.html" />
     <access origin="*" />
+    <platform name="android">
+        <icon src="icon.png" />
+    </platform>
 </widget>
