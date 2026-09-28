@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصحف الإلكتروني المتكامل | استماع وتفسير القرآن الكريم</title>
-    <meta name="description" content="تصفح واستمع للقرآن الكريم كاملاً بأصوات أشهر القراء مع التفسير الميسر، وضع ليلي، وثيمات متعددة لتجربة قراءة مريحة.">
+    <title>المصحف الإلكتروني المتكامل | تصميم مخصص وإعدادات الأشكال</title>
+    <meta name="description" content="تصفح واستمع للقرآن الكريم كاملاً مع خيارات إعدادات الأشكال والتصميم المتقدمة.">
     
-    <!-- ربط الـ Manifest مباشرة بدون ملفات خارجية باستخدام Data URL -->
     <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{
       "name": "المصحف الإلكتروني المتكامل",
       "short_name": "المصحف الشريف",
@@ -36,12 +35,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Amiri', serif; transition: background-color 0.3s ease, color 0.3s ease; }
-        .quran-text { line-height: 3.6; text-align: justify; }
+        .quran-text { line-height: 3.8; text-align: justify; }
+        .dynamic-radius { border-radius: var(--box-radius, 1.5rem); }
     </style>
 </head>
 <body id="body-element" class="min-h-screen flex flex-col justify-between">
 
-    <!-- شريط علوي فاخر ومنتظم -->
     <header class="bg-emerald-950 text-white shadow-xl py-4 px-6 border-b border-emerald-900 sticky top-0 z-50">
         <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <h1 class="text-2xl md:text-3xl font-bold tracking-wide cursor-pointer flex items-center gap-2" onclick="goHome()">
@@ -62,11 +61,10 @@
         </div>
     </header>
 
-    <!-- المحتوى الرئيسي -->
     <main class="container mx-auto px-4 py-8 flex-grow max-w-4xl">
         
         <div id="top-tools-container" class="space-y-4 mb-8">
-            <div id="last-read-banner" class="hidden bg-emerald-900 text-amber-100 p-4 rounded-2xl shadow-md flex justify-between items-center border border-emerald-700">
+            <div id="last-read-banner" class="hidden bg-emerald-900 text-amber-100 p-4 dynamic-radius shadow-md flex justify-between items-center border border-emerald-700">
                 <div class="flex items-center gap-2">
                     <span>📌</span>
                     <span>لديك آية محفوظة في آخر قراءة: <strong id="last-read-title"></strong></span>
@@ -76,7 +74,33 @@
                 </button>
             </div>
 
-            <div id="search-box-container" class="p-5 rounded-3xl shadow-md transition-all">
+            <!-- لوحة إعدادات الأشكال والتصميم الفاخرة -->
+            <div class="bg-emerald-900/40 border border-emerald-700/50 p-4 dynamic-radius shadow-sm text-sm">
+                <div class="font-bold mb-3 flex items-center gap-2 text-amber-100">
+                    <span>✨</span> إعدادات الأشكال والمظهر المتقدمة
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs mb-1 opacity-90">شكل حواف الصناديق والصفحات:</label>
+                        <select id="radius-select" onchange="changeBoxRadius(this.value)" class="w-full bg-emerald-950 text-white border border-emerald-700 rounded-xl p-2 text-xs cursor-pointer focus:outline-none">
+                            <option value="1.5rem">حواف دائرية أنيقة (افتراضي)</option>
+                            <option value="0.75rem">حواف متوسطة الاستدارة</option>
+                            <option value="0rem">حواف حادة مربعة</option>
+                            <option value="2.5rem">حواف شديدة الدوران (كبسولة)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs mb-1 opacity-90">إظهار أرقام الآيات:</label>
+                        <select id="ayah-badge-style" onchange="changeBadgeStyle(this.value)" class="w-full bg-emerald-950 text-white border border-emerald-700 rounded-xl p-2 text-xs cursor-pointer focus:outline-none">
+                            <option value="circle">دائرة مزخرفة أنيقة</option>
+                            <option value="square">مربع مدمج</option>
+                            <option value="simple">رقم نصي بسيط بدون إطار</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-box-container" class="p-5 dynamic-radius shadow-md transition-all">
                 <div class="flex gap-2">
                     <input type="text" id="search-input" placeholder="ابحث عن كلمة أو آية في القرآن الكريم..." 
                            class="w-full px-4 py-3 border rounded-2xl focus:outline-none">
@@ -96,29 +120,39 @@
             </div>
         </div>
 
-        <div id="reader-view" class="hidden p-6 md:p-12 rounded-3xl shadow-xl relative transition-all">
+        <div id="reader-view" class="hidden p-6 md:p-12 dynamic-radius shadow-xl relative transition-all">
             <div id="surah-header" class="text-center border-b pb-6 mb-8"></div>
             
-            <div id="reader-controls" class="mb-10 p-5 rounded-3xl flex flex-col gap-6 shadow-inner">
+            <div id="reader-controls" class="mb-10 p-5 dynamic-radius flex flex-col gap-6 shadow-inner">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label id="reciter-label" class="block text-sm font-bold mb-1.5">اختر القارئ المفضل:</label>
+                        <label id="reciter-label" class="block text-sm font-bold mb-1.5">اختر القارئ:</label>
                         <select id="reciter-select" onchange="changeReciter()" class="w-full border rounded-2xl p-3 focus:outline-none cursor-pointer">
                             <option value="afs">مشاري العفاسي</option>
                             <option value="maher">ماهر المعقيلي</option>
                             <option value="sds">عبد الرحمن السديس</option>
                             <option value="gmd">سعد الغامدي</option>
                             <option value="yasser">ياسر الدوسري</option>
+                            <option value="abkr">إدريس أبكر</option>
+                            <option value="ajm">أحمد العجمي</option>
+                            <option value="Fares">فارس عباد</option>
+                            <option value="minsh">محمد صديق المنشاوي</option>
+                            <option value="husri">محمود خليل الحصري</option>
+                            <option value="jibreel">محمد جبريل</option>
+                            <option value="banna">محمود علي البنا</option>
+                            <option value="akdar">إبراهيم الأخضر</option>
                         </select>
                     </div>
                     <div>
                         <div class="flex justify-between items-center mb-1.5">
                             <span id="player-label" class="text-sm font-bold">مشغل التلاوة الصوتية</span>
-                            <a id="download-btn" href="#" download class="text-xs bg-emerald-900 hover:bg-emerald-800 text-amber-100 px-3 py-1 rounded-xl transition flex items-center gap-1 shadow-xs">
+                            <a id="download-btn" href="#" download target="_blank" class="text-xs bg-emerald-900 hover:bg-emerald-800 text-amber-100 px-3 py-1 rounded-xl transition flex items-center gap-1 shadow-xs">
                                 📥 تنزيل السورة
                             </a>
                         </div>
-                        <audio id="audio-player" controls class="w-full h-10 accent-emerald-800" onended="playNextSurah()"></audio>
+                        <audio id="audio-player" controls preload="auto" class="w-full h-10 accent-emerald-800" onended="playNextSurah()">
+                            متصفحك لا يدعم مشغل الصوت.
+                        </audio>
                     </div>
                 </div>
 
@@ -146,7 +180,7 @@
     </main>
 
     <div id="tafsir-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex justify-center items-center z-50 p-4">
-        <div id="tafsir-box" class="p-6 rounded-3xl max-w-lg w-full shadow-2xl border relative max-h-[80vh] overflow-y-auto">
+        <div id="tafsir-box" class="p-6 dynamic-radius max-w-lg w-full shadow-2xl border relative max-h-[80vh] overflow-y-auto">
             <h3 class="text-xl font-bold mb-3 flex items-center gap-2">📖 التفسير الميسر</h3>
             <p id="tafsir-text" class="text-lg leading-relaxed mb-6"></p>
             <button onclick="closeTafsir()" class="w-full bg-emerald-900 text-amber-100 py-2.5 rounded-xl font-bold cursor-pointer hover:bg-emerald-800 transition">إغلاق</button>
@@ -157,9 +191,7 @@
         <p>المصحف الإلكتروني المتكامل - جعله الله صدقة جارية لي ولك</p>
     </footer>
 
-    <!-- البرمجة والمنطق وتشغيل الخدمة وهمياً من نفس الملف -->
     <script>
-        // تفعيل الـ Service Worker برمجياً من داخل الملف لتجاوز فحص PWABuilder
         if ('serviceWorker' in navigator) {
             const swCode = "self.addEventListener('fetch', function(e) {});";
             const swBlob = new Blob([swCode], { type: 'text/javascript' });
@@ -243,6 +275,16 @@
             element.style.color = color;
         }
 
+        function changeBoxRadius(val) {
+            document.documentElement.style.setProperty('--box-radius', val);
+            localStorage.setItem('quran_box_radius', val);
+        }
+
+        function changeBadgeStyle(style) {
+            localStorage.setItem('quran_badge_style', style);
+            if (currentSurahNumber) loadAyahs();
+        }
+
         function changeFontSize(delta) {
             currentFontSize = Math.max(1.3, Math.min(3.0, currentFontSize + delta * 0.2));
             document.getElementById('ayahs-container').style.fontSize = currentFontSize + 'rem';
@@ -323,6 +365,13 @@
                 currentFontSize = parseFloat(savedFont);
                 document.getElementById('ayahs-container').style.fontSize = currentFontSize + 'rem';
             }
+
+            const savedRadius = localStorage.getItem('quran_box_radius') || '1.5rem';
+            document.getElementById('radius-select').value = savedRadius;
+            changeBoxRadius(savedRadius);
+
+            const savedBadge = localStorage.getItem('quran_badge_style') || 'circle';
+            document.getElementById('ayah-badge-style').value = savedBadge;
         });
 
         async function fetchSurahs() {
@@ -344,9 +393,9 @@
                     const card = `
                         <div onclick="openSurah(${surah.number}, '${surah.name}', '${surah.englishName}')" 
                              style="background-color: ${cardBg}; border-color: ${cardBorder}; color: ${textColor};"
-                             class="p-4 rounded-2xl shadow-sm border hover:shadow-md transition cursor-pointer flex justify-between items-center group">
+                             class="p-4 dynamic-radius shadow-sm border hover:shadow-md transition cursor-pointer flex justify-between items-center group">
                             <div class="flex items-center gap-3">
-                                <span style="background-color: ${badgeBg}; color: ${badgeText};" class="w-9 h-9 flex items-center justify-center text-sm font-bold rounded-xl transition">${surah.number}</span>
+                                <span style="background-color: ${badgeBg}; color: ${badgeText};" class="w-9 h-9 flex items-center justify-center text-sm font-bold dynamic-radius transition">${surah.number}</span>
                                 <span class="text-xl font-bold">${surah.name}</span>
                             </div>
                             <div class="text-left text-xs opacity-90">
@@ -395,13 +444,23 @@
             let formattedNum = String(currentSurahNumber).padStart(3, '0');
             let audioUrl = '';
 
+            // روابط القراء المعتمدة (بدون عبد الباسط)
             if (reciterKey === 'afs') audioUrl = `https://server8.mp3quran.net/afs/${formattedNum}.mp3`;
             else if (reciterKey === 'maher') audioUrl = `https://server12.mp3quran.net/maher/${formattedNum}.mp3`;
             else if (reciterKey === 'sds') audioUrl = `https://server11.mp3quran.net/sds/${formattedNum}.mp3`;
             else if (reciterKey === 'gmd') audioUrl = `https://server7.mp3quran.net/s_gmd/${formattedNum}.mp3`;
             else if (reciterKey === 'yasser') audioUrl = `https://server11.mp3quran.net/yasser/${formattedNum}.mp3`;
+            else if (reciterKey === 'abkr') audioUrl = `https://server6.mp3quran.net/abkr/${formattedNum}.mp3`;
+            else if (reciterKey === 'ajm') audioUrl = `https://server10.mp3quran.net/ajm/${formattedNum}.mp3`;
+            else if (reciterKey === 'Fares') audioUrl = `https://server8.mp3quran.net/frs_a/${formattedNum}.mp3`;
+            else if (reciterKey === 'minsh') audioUrl = `https://server10.mp3quran.net/minsh/${formattedNum}.mp3`;
+            else if (reciterKey === 'husri') audioUrl = `https://server13.mp3quran.net/husr/${formattedNum}.mp3`;
+            else if (reciterKey === 'jibreel') audioUrl = `https://server8.mp3quran.net/jbrl/${formattedNum}.mp3`;
+            else if (reciterKey === 'banna') audioUrl = `https://server8.mp3quran.net/bna/${formattedNum}.mp3`;
+            else if (reciterKey === 'akdar') audioUrl = `https://server6.mp3quran.net/akdr/${formattedNum}.mp3`;
 
             audioPlayer.src = audioUrl;
+            audioPlayer.load();
             downloadBtn.href = audioUrl;
             changeSpeed();
         }
@@ -412,14 +471,21 @@
                 const resAyahs = await fetch(`${API_BASE}/surah/${currentSurahNumber}`);
                 const dataAyahs = await resAyahs.json();
 
+                const badgeStyle = localStorage.getItem('quran_badge_style') || 'circle';
+
                 let ayahsHTML = '';
                 dataAyahs.data.ayahs.forEach(ayah => {
                     let escapedText = ayah.text.replace(/'/g, "\\'");
+                    
+                    let badgeClass = "rounded-full w-7 h-7 inline-flex items-center justify-center";
+                    if (badgeStyle === 'square') badgeClass = "rounded-md w-7 h-7 inline-flex items-center justify-center";
+                    else if (badgeStyle === 'simple') badgeClass = "px-1 inline-flex items-center justify-center";
+
                     ayahsHTML += `${ayah.text} 
                         <span class="inline-flex items-center gap-1 mx-1">
                             <button onclick="showTafsir(${currentSurahNumber}, ${ayah.numberInSurah})" class="text-xs bg-emerald-700/20 hover:bg-emerald-700 hover:text-white px-2 py-0.5 rounded-md cursor-pointer transition" title="عرض التفسير">📖 تفسير</button>
                             <button onclick="copyAyah('${escapedText}', '${currentSurahName}', ${ayah.numberInSurah})" class="text-xs bg-stone-500/20 hover:bg-stone-600 hover:text-white px-1.5 py-0.5 rounded-md cursor-pointer transition" title="نسخ الآية">📋</button>
-                            <span class="text-emerald-700 dark:text-emerald-400 text-base font-sans font-bold border border-emerald-700/30 bg-emerald-50/50 dark:bg-emerald-950/50 rounded-full w-7 h-7 inline-flex items-center justify-center">(${ayah.numberInSurah})</span>
+                            <span class="text-emerald-700 dark:text-emerald-400 text-base font-sans font-bold border border-emerald-700/30 bg-emerald-50/50 dark:bg-emerald-950/50 ${badgeClass}">(${ayah.numberInSurah})</span>
                         </span>`;
                 });
 
@@ -459,7 +525,7 @@
                 data.data.matches.slice(0, 15).forEach(match => {
                     html += `
                         <div onclick="openSurah(${match.surah.number}, '${match.surah.name}', '${match.surah.englishName}')" 
-                             class="p-3.5 rounded-2xl hover:opacity-90 transition cursor-pointer border border-emerald-900/10 shadow-xs">
+                             class="p-3.5 dynamic-radius hover:opacity-90 transition cursor-pointer border border-emerald-900/10 shadow-xs">
                             <div class="flex justify-between text-xs font-bold mb-1 opacity-85">
                                 <span>سورة ${match.surah.name}</span>
                                 <span>آية رقم ${match.numberInSurah}</span>
@@ -486,4 +552,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
