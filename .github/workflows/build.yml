@@ -1,0 +1,46 @@
+name: Build Android App (APK)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Cordova CLI
+        run: npm install -g cordova
+
+      - name: Prepare Cordova Project Structure
+        run: |
+          cordova create temp_app com.quran.app "المصحف الشريف"
+          cp -r temp_app/* .
+          rm -rf temp_app
+          mkdir -p www
+          mv index.html config.xml www/
+
+      - name: Add Android Platform
+        run: cordova platform add android
+
+      - name: Build Debug APK
+        run: cordova build android
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug
+          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
