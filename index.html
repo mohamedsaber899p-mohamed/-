@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصحف الإلكتروني المتكامل بالتجويد</title>
+    <title>المصحف الإلكتروني المتكامل</title>
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
@@ -11,21 +11,21 @@
         body { font-family: 'Amiri', serif; transition: background-color 0.3s ease, color 0.3s ease; }
         .quran-text { 
             font-family: 'Scheherazade New', 'Amiri', serif; 
-            line-height: 3.2; 
+            line-height: 3.5; 
             text-align: justify; 
             word-spacing: 4px; 
         }
         
-        /* ألوان أحكام التجويد الشاملة المطابقة للصورة */
-        .tajweed-madd-munfasil { color: #c084fc; font-weight: bold; } /* مد منفصل - بنفسجي فاتح */
-        .tajweed-madd-muttasil { color: #f43f5e; font-weight: bold; } /* مد متصل - وردي/أحمر */
-        .tajweed-madd-badal    { color: #38bdf8; font-weight: bold; } /* مد بدل - أزرق سماوي */
-        .tajweed-madd-awad     { color: #a855f7; font-weight: bold; } /* مد عوض - بنفسجي غامق */
+        /* ألوان أحكام التجويد الملونة الشاملة */
+        .tajweed-madd-munfasil { color: #a855f7; font-weight: bold; } /* مد منفصل - بنفسجي فاتح */
+        .tajweed-madd-muttasil { color: #ef4444; font-weight: bold; } /* مد متصل - أحمر */
+        .tajweed-madd-badal    { color: #06b6d4; font-weight: bold; } /* مد بدل - سماوي */
+        .tajweed-madd-iwad     { color: #8b5cf6; font-weight: bold; } /* مد عوض - بنفسجي غامق */
         .tajweed-ikhfa         { color: #f97316; font-weight: bold; } /* إخفاء - برتقالي */
-        .tajweed-idgham        { color: #ec4899; font-weight: bold; } /* إدغام - وردي فاقع */
+        .tajweed-idgham        { color: #ec4899; font-weight: bold; } /* إدغام - وردي */
         .tajweed-tafkhim       { color: #22c55e; font-weight: bold; } /* تفخيم - أخضر */
-        .tajweed-ghunnah       { color: #eab308; font-weight: bold; } /* غنّة - أصفر */
-        .tajweed-qalqalah      { color: #06b6d4; font-weight: bold; } /* قلقلة - أزرق تركواز */
+        .tajweed-ghunnah       { color: #eab308; font-weight: bold; } /* غنة - أصفر */
+        .tajweed-qalqalah      { color: #38bdf8; font-weight: bold; } /* قلقلة - أزرق فاتح */
 
         .quran-card-dark {
             background-color: #121212 !important;
@@ -48,7 +48,7 @@
             
             <div class="flex items-center gap-2 flex-wrap justify-center text-xs md:text-sm">
                 <select id="mode-selector" onchange="toggleTajweedMode(this.value)" class="bg-amber-600 text-white border border-amber-500 rounded-lg px-2.5 py-1.5 font-bold focus:outline-none cursor-pointer">
-                    <option value="tajweed" selected>🎨 مصحف التجويد الملون</option>
+                    <option value="tajweed" selected>🎨 مصحف التجويد الملون الشامل</option>
                     <option value="text">📄 مصحف نصي عادي</option>
                 </select>
 
@@ -92,7 +92,7 @@
         <div id="home-view">
             <div class="text-center mb-6">
                 <h2 id="main-title" class="text-2xl font-bold mb-1 text-emerald-400">فهرس السور القرآنية</h2>
-                <p id="main-subtitle" class="text-xs text-stone-400">اختر السورة لقراءتها مع أحكام التجويد الملونة والاستماع إليها</p>
+                <p id="main-subtitle" class="text-xs text-stone-400">اختر السورة لقراءتها مع أحكام التجويد الملونة الشاملة والاستماع إليها</p>
             </div>
             <div id="surahs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 <div class="text-center col-span-full py-8 text-stone-400 animate-pulse">جاري تحميل السور...</div>
@@ -150,16 +150,16 @@
                 </div>
             </div>
 
-            <!-- دليل ألوان التجويد الشامل المطابق للصورة -->
-            <div id="tajweed-legend" class="mb-6 p-3 rounded-2xl bg-stone-950/90 border border-stone-800 text-xs flex flex-wrap justify-center gap-3 md:gap-5 text-center">
+            <!-- دليل ألوان التجويد الشامل -->
+            <div id="tajweed-legend" class="mb-6 p-3.5 rounded-xl bg-stone-950/90 border border-stone-800 text-xs flex flex-wrap justify-center gap-3 text-center">
                 <span class="tajweed-madd-munfasil">● مد منفصل</span>
                 <span class="tajweed-madd-muttasil">● مد متصل</span>
                 <span class="tajweed-madd-badal">● مد بدل</span>
-                <span class="tajweed-madd-awad">● مد عوض</span>
+                <span class="tajweed-madd-iwad">● مد عوض</span>
                 <span class="tajweed-ikhfa">● إخفاء</span>
                 <span class="tajweed-idgham">● إدغام</span>
                 <span class="tajweed-tafkhim">● تفخيم</span>
-                <span class="tajweed-ghunnah">● غُنّة</span>
+                <span class="tajweed-ghunnah">● غنة</span>
                 <span class="tajweed-qalqalah">● قلقلة</span>
             </div>
 
@@ -180,7 +180,7 @@
     </div>
 
     <footer class="bg-emerald-950 text-amber-100/80 text-center py-4 text-xs mt-8 border-t border-emerald-900">
-        <p>المصحف الإلكتروني المتكامل مع تجويد الحروف</p>
+        <p>المصحف الإلكتروني المتكامل مع تجويد الحروف الشامل</p>
     </footer>
 
     <script>
@@ -292,31 +292,29 @@
             }
         }
 
-        // إدراج تلوين جميع أحكام التجويد الشاملة برمجيًا على النص القرآني
+        // تطبيق أحكام التجويد الملونة الشاملة
         function applyTajweedFormatting(text) {
             if (!isTajweedMode) return text;
             
             return text
-                // مد منفصل ومد متصل
-                .replace(/([آأإءئؤ]ٓ|آ)/g, '<span class="tajweed-madd-munfasil">$1</span>')
-                .replace(/(ـٰٓ|ٰٓ)/g, '<span class="tajweed-madd-muttasil">$1</span>')
-                
-                // مد بدل ومد عوض
-                .replace(/(ءَا|ءُو|ءِي)/g, '<span class="tajweed-madd-badal">$1</span>')
-                .replace(/(اً|ً)(?=\s*[\n$])/g, '<span class="tajweed-madd-awad">$1</span>')
-                
-                // غُنّة وإدغام
+                // 1. مد متصل (أحمر)
+                .replace(/([آأإءئؤ][َُِ]*[\u06e1\u0652]*[آأإءئؤ]|آ|أٓ|إٓ)/g, '<span class="tajweed-madd-muttasil">$1</span>')
+                // 2. مد منفصل (بنفجي فاتح)
+                .replace(/(ىٰ|و۟|ي۟|ا۟)/g, '<span class="tajweed-madd-munfasil">$1</span>')
+                // 3. مد بدل (سماوي)
+                .replace(/(ؤُ|ئِ|إِ|أَ|آ)/g, '<span class="tajweed-madd-badal">$1</span>')
+                // 4. الغنة (أصفر)
                 .replace(/(نّ|مّ)/g, '<span class="tajweed-ghunnah">$1</span>')
-                .replace(/(نً|نٍ|نٌ|ً|ٍ|ٌ)(?=\s*[يرملون])/g, '<span class="tajweed-idgham">$1</span>')
-                
-                // إخفاء
-                .replace(/(نْ|ً|ٍ|ٌ)(?=\s*[تثجدذزسشصضطظفقك])/g, '<span class="tajweed-ikhfa">$1</span>')
-                
-                // قلقلة (قطب جد)
-                .replace(/([قـق طـط بـب جـج دـدْ]|[قطبجد]ْ)/g, '<span class="tajweed-qalqalah">$1</span>')
-                
-                // تفخيم
-                .replace(/(رَ|رُ|رّ|رَّ|رُّ|[خصضغطقظ])/g, '<span class="tajweed-tafkhim">$1</span>');
+                // 5. الإخفاء (برتقالي)
+                .replace(/([تثجخدذزسشصضطظفقك]|ن[ْࣹ])/g, function(match) {
+                    return match.includes('ن') ? '<span class="tajweed-ikhfa">ن</span>' : match;
+                })
+                // 6. الإدغام (وردي)
+                .replace(/(يرملون)/g, '<span class="tajweed-idgham">$1</span>')
+                // 7. القلقلة (أزرق فاتح)
+                .replace(/([قطبجد]ْ|[قطبجد])/g, '<span class="tajweed-qalqalah">$1</span>')
+                // 8. التفخيم (أخضر)
+                .replace(/([خصضطظغق])/g, '<span class="tajweed-tafkhim">$1</span>');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -416,7 +414,7 @@
 
         async function loadAyahs() {
             const container = document.getElementById('ayahs-container');
-            container.innerHTML = '<div class="text-center py-8 text-stone-400 animate-pulse">جاري تحميل النص القرآني بالتجويد...</div>';
+            container.innerHTML = '<div class="text-center py-8 text-stone-400 animate-pulse">جاري تحميل النص القرآني بالتجويد الشامل...</div>';
 
             try {
                 const resAyahs = await fetch(`${API_BASE}/surah/${currentSurahNumber}`);
@@ -500,4 +498,4 @@
         }
     </script>
 </body>
-                        </html>
+    </html>
