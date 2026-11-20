@@ -1,0 +1,22 @@
+
+{
+  "name": "المصحف الشريف - Mohammed saber",
+  "short_name": "المصحف الشريف",
+  "description": "المصحف الإلكتروني المتكامل مع أحكام التجويد والتفسير والتلاوة",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121212",
+  "theme_color": "#003b2e",
+  "icons": [
+    {
+      "src": "./quran-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
