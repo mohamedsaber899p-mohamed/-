@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المصحف الإلكتروني المتكامل</title>
-    
+    <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#003b2e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -502,6 +505,15 @@
             document.getElementById('search-input').value = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    </script>
+    <script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+            .then(reg => console.log("PWA Ready:", reg.scope))
+            .catch(err => console.error("PWA Error:", err));
+    });
+}
     </script>
 </body>
     </html>
