@@ -1,0 +1,15 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#003b2e"/>
+  <rect x="95" y="105" width="322" height="302" rx="35"
+        fill="#d6a84b"/>
+  <path d="M256 155 C210 125 155 130 130 145
+           L130 355 C175 330 220 340 256 370 Z"
+        fill="#fff5dc"/>
+  <path d="M256 155 C302 125 357 130 382 145
+           L382 355 C337 330 292 340 256 370 Z"
+        fill="#fff5dc"/>
+  <path d="M256 155 V370" stroke="#d6a84b" stroke-width="9"/>
+  <text x="256" y="285" text-anchor="middle"
+        font-size="65" fill="#08734f">﷽</text>
+</svg>
