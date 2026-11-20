@@ -40,12 +40,15 @@
 </head>
 <body id="body-element" class="min-h-screen flex flex-col justify-between bg-[#121212] text-white">
 
-    <header class="bg-emerald-950 text-white shadow-xl py-3 px-4 border-b border-emerald-900 sticky top-0 z-50">
+    <header class="bg-emerald-950 text-white shadow-xl py-3 px-4 border-b border-emerald-900 sticky top-0 z-50 relative">
         <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
             <h1 class="text-xl md:text-2xl font-bold tracking-wide cursor-pointer flex items-center gap-2" onclick="goHome()">
                 <span>📖</span> المصحف الشريف
             </h1>
-            
+            <div class="absolute left-4 top-5 text-center">
+    <p class="text-[10px] text-emerald-300">تم الإنشاء بواسطة</p>
+    <p class="text-xs font-bold text-amber-300">Mohammed saber</p>
+            </div>
             <div class="flex items-center gap-2 flex-wrap justify-center text-xs md:text-sm">
                 <select id="mode-selector" onchange="toggleTajweedMode(this.value)" class="bg-amber-600 text-white border border-amber-500 rounded-lg px-2.5 py-1.5 font-bold focus:outline-none cursor-pointer">
                     <option value="tajweed" selected>🎨 مصحف التجويد الملون الشامل</option>
